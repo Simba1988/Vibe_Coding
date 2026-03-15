@@ -1,21 +1,23 @@
 <nav class="pagination" aria-label="Search results pagination">
   <button
-    class="pagination-btn"
+    mat-button
     (click)="onPrevious()"
     [disabled]="currentPage() <= 1"
     aria-label="Previous page"
   >
-    &larr; Previous
+    <mat-icon>chevron_left</mat-icon>
+    Previous
   </button>
 
   <span class="pagination-info"> Page {{ currentPage() }} of {{ totalPages() }} </span>
 
   <button
-    class="pagination-btn"
+    mat-button
     (click)="onNext()"
     [disabled]="currentPage() >= totalPages()"
     aria-label="Next page"
   >
-    Next &rarr;
+    Next
+    <mat-icon>chevron_right</mat-icon>
   </button>
 </nav>

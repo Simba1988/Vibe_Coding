@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
 import { MovieSearchComponent } from './movie-search';
 import { MovieService } from '../../services/movie.service';
@@ -35,7 +36,7 @@ describe('MovieSearchComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [MovieSearchComponent],
-      providers: [{ provide: MovieService, useValue: mockMovieService }],
+      providers: [{ provide: MovieService, useValue: mockMovieService }, provideNoopAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MovieSearchComponent);
@@ -59,7 +60,7 @@ describe('MovieSearchComponent', () => {
   it('should show search results after typing', async () => {
     mockMovieService.searchMovies.mockReturnValue(of(mockSearchResult));
 
-    const input = fixture.nativeElement.querySelector('.search-input') as HTMLInputElement;
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     input.value = 'test';
     input.dispatchEvent(new Event('input'));
 
@@ -75,7 +76,7 @@ describe('MovieSearchComponent', () => {
   it('should show error state on service error', async () => {
     mockMovieService.searchMovies.mockReturnValue(throwError(() => new Error('API failed')));
 
-    const input = fixture.nativeElement.querySelector('.search-input') as HTMLInputElement;
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     input.value = 'test';
     input.dispatchEvent(new Event('input'));
 
@@ -91,7 +92,7 @@ describe('MovieSearchComponent', () => {
   it('should show empty state when no results', async () => {
     mockMovieService.searchMovies.mockReturnValue(of({ movies: [], totalResults: 0 }));
 
-    const input = fixture.nativeElement.querySelector('.search-input') as HTMLInputElement;
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     input.value = 'zzznotamovie';
     input.dispatchEvent(new Event('input'));
 
@@ -107,7 +108,7 @@ describe('MovieSearchComponent', () => {
   it('should return to idle when input is cleared', async () => {
     mockMovieService.searchMovies.mockReturnValue(of(mockSearchResult));
 
-    const input = fixture.nativeElement.querySelector('.search-input') as HTMLInputElement;
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     input.value = 'test';
     input.dispatchEvent(new Event('input'));
     vi.advanceTimersByTime(350);

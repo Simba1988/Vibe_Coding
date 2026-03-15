@@ -7,7 +7,10 @@
       "Bash(npm run test)",
       "Bash(npm run build)",
       "Bash(npx prettier --check .)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npx ng add @angular/material --skip-confirmation --theme=custom --animations=included --typography=true)",
+      "Bash(npm ls @angular/material)",
+      "Bash(npm install @angular/animations)"
     ]
   }
 }

@@ -1,49 +1,55 @@
-<div class="search-container">
+<mat-form-field class="search-field" appearance="outline">
+  <mat-icon matPrefix>search</mat-icon>
   <input
+    matInput
     type="text"
-    class="search-input"
     placeholder="Search for movies..."
     (input)="onSearchInput($event)"
     aria-label="Search for movies"
   />
-</div>
+</mat-form-field>
 
 @if (viewState$ | async; as state) {
-  @switch (state.status) {
-    @case ('idle') {
-      <p class="status-message">Start typing to search for movies.</p>
-    }
-    @case ('loading') {
-      <div class="loading-indicator">
-        <p>Searching...</p>
-      </div>
-    }
-    @case ('error') {
-      <div class="error-message" role="alert">
-        <p>{{ state.message }}</p>
-      </div>
-    }
-    @case ('empty') {
-      <div class="empty-message">
-        <p>No results</p>
-      </div>
-    }
-    @case ('success') {
-      <div class="movie-grid">
-        @for (movie of state.data.movies; track movie.imdbId) {
-          <app-movie-card [movie]="movie" (movieClick)="onMovieClick($event)" />
-        }
-      </div>
+  <div class="results-area" [@.disabled]="false">
+    @switch (state.status) {
+      @case ('idle') {
+        <p class="status-message">Start typing to search for movies.</p>
+      }
+      @case ('loading') {
+        <div class="loading-indicator">
+          <mat-spinner diameter="40"></mat-spinner>
+          <p>Searching...</p>
+        </div>
+      }
+      @case ('error') {
+        <div class="error-message" role="alert">
+          <mat-icon class="error-icon">error_outline</mat-icon>
+          <p>{{ state.message }}</p>
+        </div>
+      }
+      @case ('empty') {
+        <div class="empty-message">
+          <mat-icon class="empty-icon">movie</mat-icon>
+          <p>No results</p>
+        </div>
+      }
+      @case ('success') {
+        <div class="movie-grid">
+          @for (movie of state.data.movies; track movie.imdbId) {
+            <app-movie-card [movie]="movie" (movieClick)="onMovieClick($event)" />
+          }
+        </div>
 
-      @if (state.totalPages > 1) {
-        <app-pagination
-          [currentPage]="state.currentPage"
-          [totalPages]="state.totalPages"
-          (pageChange)="onPageChange($event)"
-        />
+        @if (state.totalPages > 1) {
+          <app-pagination
+            [currentPage]="state.currentPage"
+            [totalPages]="state.totalPages"
+            (pageChange)="onPageChange($event)"
+          />
+        }
       }
     }
-  }
+  </div>
 }
 
 @if (showModal && selectedMovieDetail$) {

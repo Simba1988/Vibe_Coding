@@ -12,6 +12,10 @@ import {
   startWith,
   map,
 } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MovieService } from '../../services/movie.service';
 import { MovieSearchResult, OmdbDetailResponse } from '../../models/movie.model';
 import { MovieCardComponent } from '../../components/movie-card/movie-card';
@@ -45,7 +49,16 @@ const RESULTS_PER_PAGE = 10;
 
 @Component({
   selector: 'app-movie-search',
-  imports: [AsyncPipe, MovieCardComponent, MovieDetailModalComponent, PaginationComponent],
+  imports: [
+    AsyncPipe,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MovieCardComponent,
+    MovieDetailModalComponent,
+    PaginationComponent,
+  ],
   templateUrl: './movie-search.html',
   styleUrl: './movie-search.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

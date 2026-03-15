@@ -1,4 +1,4 @@
-<div
+<mat-card
   class="movie-card"
   (click)="onCardClick()"
   (keydown.enter)="onCardClick()"
@@ -11,12 +11,13 @@
       <img [src]="movie().posterUrl" [alt]="movie().title + ' poster'" class="poster" />
     } @else {
       <div class="poster-placeholder">
+        <mat-icon class="placeholder-icon">movie</mat-icon>
         <span>No Image</span>
       </div>
     }
   </div>
-  <div class="card-info">
+  <mat-card-content class="card-info">
     <h3 class="movie-title">{{ movie().title }}</h3>
     <p class="movie-year">{{ movie().year }}</p>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>

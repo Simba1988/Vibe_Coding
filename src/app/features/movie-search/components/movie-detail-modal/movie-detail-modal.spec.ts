@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { MovieDetailModalComponent } from './movie-detail-modal';
 import { OmdbDetailResponse } from '../../models/movie.model';
@@ -34,6 +35,7 @@ describe('MovieDetailModalComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MovieDetailModalComponent],
+      providers: [provideNoopAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MovieDetailModalComponent);

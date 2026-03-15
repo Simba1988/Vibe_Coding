@@ -1,6 +1,8 @@
 <div class="modal-overlay" (click)="onOverlayClick($event)" role="dialog" aria-modal="true">
   <div class="modal-content">
-    <button class="modal-close-btn" (click)="onClose()" aria-label="Close modal">&times;</button>
+    <button mat-icon-button class="modal-close-btn" (click)="onClose()" aria-label="Close modal">
+      <mat-icon>close</mat-icon>
+    </button>
 
     @if (movieDetail$() | async; as detail) {
       <div class="modal-body">
@@ -8,7 +10,10 @@
           @if (detail.Poster !== 'N/A') {
             <img [src]="detail.Poster" [alt]="detail.Title + ' poster'" />
           } @else {
-            <div class="poster-placeholder">No Image</div>
+            <div class="poster-placeholder">
+              <mat-icon class="placeholder-icon">movie</mat-icon>
+              <span>No Image</span>
+            </div>
           }
         </div>
         <div class="modal-info">
@@ -16,8 +21,16 @@
           <p class="meta">
             {{ detail.Year }} &middot; {{ detail.Rated }} &middot; {{ detail.Runtime }}
           </p>
-          <p class="genre">{{ detail.Genre }}</p>
-          <p class="rating">IMDb Rating: {{ detail.imdbRating }} / 10</p>
+          <mat-chip-set class="genre-chips">
+            @for (genre of detail.Genre.split(', '); track genre) {
+              <mat-chip>{{ genre }}</mat-chip>
+            }
+          </mat-chip-set>
+          <div class="rating">
+            <mat-icon class="rating-star">star</mat-icon>
+            <span class="rating-value">{{ detail.imdbRating }}</span>
+            <span class="rating-max">/ 10</span>
+          </div>
           <p class="plot">{{ detail.Plot }}</p>
           <dl class="detail-list">
             <dt>Director</dt>
@@ -37,6 +50,7 @@
       </div>
     } @else {
       <div class="modal-loading">
+        <mat-spinner diameter="40"></mat-spinner>
         <p>Loading movie details...</p>
       </div>
     }

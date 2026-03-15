@@ -34,7 +34,7 @@ describe('PaginationComponent', () => {
     component.pageChange.subscribe((p: number) => (emittedPage = p));
 
     const buttons = fixture.nativeElement.querySelectorAll(
-      '.pagination-btn',
+      'button',
     ) as NodeListOf<HTMLButtonElement>;
     buttons[0].click();
 
@@ -46,7 +46,7 @@ describe('PaginationComponent', () => {
     component.pageChange.subscribe((p: number) => (emittedPage = p));
 
     const buttons = fixture.nativeElement.querySelectorAll(
-      '.pagination-btn',
+      'button',
     ) as NodeListOf<HTMLButtonElement>;
     buttons[1].click();
 
@@ -57,9 +57,7 @@ describe('PaginationComponent', () => {
     componentRef.setInput('currentPage', 1);
     fixture.detectChanges();
 
-    const prevBtn = fixture.nativeElement.querySelectorAll(
-      '.pagination-btn',
-    )[0] as HTMLButtonElement;
+    const prevBtn = fixture.nativeElement.querySelectorAll('button')[0] as HTMLButtonElement;
     expect(prevBtn.disabled).toBe(true);
   });
 
@@ -67,9 +65,7 @@ describe('PaginationComponent', () => {
     componentRef.setInput('currentPage', 5);
     fixture.detectChanges();
 
-    const nextBtn = fixture.nativeElement.querySelectorAll(
-      '.pagination-btn',
-    )[1] as HTMLButtonElement;
+    const nextBtn = fixture.nativeElement.querySelectorAll('button')[1] as HTMLButtonElement;
     expect(nextBtn.disabled).toBe(true);
   });
 });
