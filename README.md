@@ -1,59 +1,79 @@
-# VibeCoding
+# Movie Search
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.2.
+A movie search application built with Angular 21 and the OMDb API. Search for movies with debounced input, browse paginated results in a responsive card grid, and view detailed information in a modal.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Debounced search with loading, error, and empty states
+- Paginated results (10 per page) with Previous/Next navigation
+- Movie detail modal with poster, rating, genre chips, plot, and credits
+- Responsive grid layout (2–5 columns depending on screen width)
+- Angular Material UI components with M3 theming
 
-```bash
-ng serve
-```
+## Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Framework:** Angular 21 (standalone components, signal inputs/outputs, new control flow)
+- **UI:** Angular Material 21 (M3 theme)
+- **Reactive:** RxJS 7 (debounceTime, switchMap, distinctUntilChanged, catchError)
+- **Styling:** SCSS with CSS custom properties
+- **Testing:** Vitest 4
+- **API:** [OMDb API](https://www.omdbapi.com/)
 
-## Code scaffolding
+## Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js v25.6.1 (pinned in `.nvmrc`)
+- npm 11+
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Getting Started
 
 ```bash
-ng build
+# Use the correct Node version
+nvm use
+
+# Install dependencies
+npm install
+
+# Set up your OMDb API key
+# Edit src/environments/environment.ts and replace YOUR_API_KEY_HERE with your key
+# Get a free key at https://www.omdbapi.com/apikey.aspx
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Running the App
 
 ```bash
-ng test
+npm run start
 ```
 
-## Running end-to-end tests
+Open http://localhost:4200 in your browser.
 
-For end-to-end (e2e) testing, run:
+## Running Tests
 
 ```bash
-ng e2e
+npm run test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Production Build
 
-## Additional Resources
+```bash
+npm run build
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Output is written to `dist/Vibe_Coding/`.
+
+## Architecture
+
+The project follows a feature-based folder structure with smart/dumb component separation:
+
+```
+src/app/
+├── features/movie-search/
+│   ├── components/        # Presentational: movie-card, movie-detail-modal, pagination
+│   ├── containers/        # Smart: movie-search (RxJS pipeline, state management)
+│   ├── models/            # TypeScript interfaces for API and domain types
+│   └── services/          # MovieService (HTTP, retry, error mapping)
+├── app.ts                 # Root component with Material toolbar
+├── app.config.ts          # Providers (router, HTTP, animations)
+└── app.routes.ts          # Lazy-loaded route to MovieSearchComponent
+```
+
+All components use `ChangeDetectionStrategy.OnPush`, the `inject()` function for DI, and `input()`/`output()` signal functions.

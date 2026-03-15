@@ -10,7 +10,8 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(npx ng add @angular/material --skip-confirmation --theme=custom --animations=included --typography=true)",
       "Bash(npm ls @angular/material)",
-      "Bash(npm install @angular/animations)"
+      "Bash(npm install @angular/animations)",
+      "Bash(npx prettier --write README.md)"
     ]
   }
 }
