@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "npm install",
+      "npm run *",
+      "npx prettier *",
+      "ng generate *",
+      "ng add *",
+      "ng serve",
+      "ng build",
+      "ng test",
+      "git add *",
+      "git commit *",
+      "git status",
+      "git diff *",
+      "git log *"
+    ],
+    "deny": [
+      "rm -rf *",
+      "git push *",
+      "git checkout main",
+      "npm publish",
+      "ng deploy"
+    ]
+  }
+}
