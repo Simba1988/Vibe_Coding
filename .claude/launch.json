@@ -4,8 +4,8 @@
     {
       "name": "Angular Dev Server",
       "runtimeExecutable": "/bin/sh",
-      "runtimeArgs": ["-c", "source ~/.nvm/nvm.sh && nvm use && npm run start"],
-      "port": 4200
+      "runtimeArgs": ["-c", "source ~/.nvm/nvm.sh && nvm use && npx ng serve --port 4201"],
+      "port": 4201
     }
   ]
 }

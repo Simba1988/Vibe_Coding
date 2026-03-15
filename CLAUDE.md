@@ -15,6 +15,7 @@ A small, focused Angular 21 application demonstrating component architecture, Rx
 ## Architecture Principles
 
 ### Component Design
+
 - Use **standalone components** exclusively — no NgModules for component declarations.
 - Use the **new control flow** syntax: `@if`, `@for`, `@switch`, `@empty`, `@defer` — never `*ngIf` or `*ngFor`.
 - Keep components small and single-purpose. Split into smart (container) and dumb (presentational) components.
@@ -22,12 +23,14 @@ A small, focused Angular 21 application demonstrating component architecture, Rx
 - Inputs via `input()` signal function. Outputs via `output()` function or traditional `@Output()`.
 
 ### State & Data Flow
+
 - Services handle all data fetching and state. Components never call `HttpClient` directly.
 - Use a **service-with-subject** pattern or **signal-based state** for local app state.
 - Parent-to-child: inputs. Child-to-parent: outputs/events. Cross-cutting: injectable services.
 - Avoid deeply nested prop drilling — prefer a shared service when data spans 3+ levels.
 
 ### RxJS Discipline
+
 - **Create streams** with `HttpClient`, `Subject`, `BehaviorSubject`, or `fromEvent` as appropriate.
 - **Pipe and transform** — use operators like `map`, `switchMap`, `catchError`, `debounceTime`, `distinctUntilChanged`, `tap`, `shareReplay`, `combineLatest`, `startWith`, `filter`, `retry`, `finalize`.
 - **Teardown/unsubscribe** — use one of these patterns consistently:
@@ -38,6 +41,7 @@ A small, focused Angular 21 application demonstrating component architecture, Rx
 - Handle errors in streams with `catchError` — never let an observable die silently.
 
 ### Error / Loading / Empty States
+
 - Every data-driven view must handle three states: **loading**, **data**, and **error**.
 - Use an `@if`/`@else` pattern or a wrapper component to toggle between states.
 - Empty state: when data arrives successfully but the collection is empty, show a meaningful message.
@@ -69,12 +73,14 @@ src/
 ## Coding Standards
 
 ### TypeScript
+
 - Enable `strict: true` in `tsconfig.json`.
 - Define explicit interfaces/types for all API responses and domain models — no `any`.
 - Use `readonly` on properties that should not be reassigned.
 - Prefer `const` over `let`. Never use `var`.
 
 ### Angular Conventions
+
 - File naming: `kebab-case` — `user-list.ts`, `user-list.html`, `user-list.scss`, `user-list.spec.ts` (Angular 21 omits the `.component` / `.service` suffix by default; either convention is fine, but be consistent within the project).
 - One component/service/pipe per file.
 - Use `inject()` function for dependency injection, not constructor injection.
@@ -82,14 +88,17 @@ src/
 - Register services with `providedIn: 'root'` unless feature-scoped.
 
 ### Templates
+
 - Use the `async` pipe to subscribe to observables in templates whenever possible.
 - Keep template expressions simple — move logic to the component class or a pipe.
 - Use `trackBy` function (via `@for (item of items; track item.id)`) for all lists.
 
 ### Styling
+
 - Component-scoped SCSS. Minimal global styles.
 
 ### Formatting
+
 - Prettier is configured in `.prettierrc`: single quotes, 100 char print width, Angular HTML parser.
 - Always run `npx prettier --write .` before considering work done.
 - Do not override Prettier's formatting choices with manual formatting.
@@ -129,12 +138,14 @@ npm run build
 ## README Expectations
 
 The project must include a short `README.md` covering:
+
 1. What the app does (1–2 sentences).
 2. How to install and run it (`npm install` → `ng serve`).
 3. Any environment setup or API keys needed.
 4. Brief note on architecture decisions (optional but appreciated).
 
 ## API Configuration
+
 - OMDb API base URL: `https://www.omdbapi.com/`
 - API key should be stored in `src/environments/environment.ts`
 - Use Angular's `environment` pattern for config
@@ -166,9 +177,11 @@ Before considering the project complete, verify:
 - Do not install heavy UI libraries just for one button style. Keep dependencies lean.
 
 ## Planned Tasks
+
 See `.claude/tasks/` for feature specs. Reference the relevant file when asking to implement a feature.
 
 ## Acceptance criteria
+
 - Search only shows 10 results per page
 - Pagination arrows are visible
 
