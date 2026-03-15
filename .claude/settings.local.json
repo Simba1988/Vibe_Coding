@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(source ~/.nvm/nvm.sh)",
+      "Bash(nvm use)",
+      "Bash(npx prettier --write .)",
+      "Bash(npm run test)",
+      "Bash(npm run build)",
+      "Bash(npx prettier --check .)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

@@ -101,7 +101,7 @@ describe('MovieSearchComponent', () => {
     fixture.detectChanges();
 
     const el = fixture.nativeElement as HTMLElement;
-    expect(el.querySelector('.empty-message')?.textContent).toContain('No movies found');
+    expect(el.querySelector('.empty-message')?.textContent).toContain('No results');
   });
 
   it('should return to idle when input is cleared', async () => {

@@ -25,7 +25,7 @@
     }
     @case ('empty') {
       <div class="empty-message">
-        <p>No movies found for "{{ state.query }}".</p>
+        <p>No results</p>
       </div>
     }
     @case ('success') {
@@ -34,6 +34,14 @@
           <app-movie-card [movie]="movie" (movieClick)="onMovieClick($event)" />
         }
       </div>
+
+      @if (state.totalPages > 1) {
+        <app-pagination
+          [currentPage]="state.currentPage"
+          [totalPages]="state.totalPages"
+          (pageChange)="onPageChange($event)"
+        />
+      }
     }
   }
 }
