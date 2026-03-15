@@ -1,0 +1,43 @@
+<div class="search-container">
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search for movies..."
+    (input)="onSearchInput($event)"
+    aria-label="Search for movies"
+  />
+</div>
+
+@if (viewState$ | async; as state) {
+  @switch (state.status) {
+    @case ('idle') {
+      <p class="status-message">Start typing to search for movies.</p>
+    }
+    @case ('loading') {
+      <div class="loading-indicator">
+        <p>Searching...</p>
+      </div>
+    }
+    @case ('error') {
+      <div class="error-message" role="alert">
+        <p>{{ state.message }}</p>
+      </div>
+    }
+    @case ('empty') {
+      <div class="empty-message">
+        <p>No movies found for "{{ state.query }}".</p>
+      </div>
+    }
+    @case ('success') {
+      <div class="movie-grid">
+        @for (movie of state.data.movies; track movie.imdbId) {
+          <app-movie-card [movie]="movie" (movieClick)="onMovieClick($event)" />
+        }
+      </div>
+    }
+  }
+}
+
+@if (showModal && selectedMovieDetail$) {
+  <app-movie-detail-modal [movieDetail$]="selectedMovieDetail$" (closeModal)="onCloseModal()" />
+}

@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.app-header {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}

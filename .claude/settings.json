@@ -15,12 +15,6 @@
       "git diff *",
       "git log *"
     ],
-    "deny": [
-      "rm -rf *",
-      "git push *",
-      "git checkout main",
-      "npm publish",
-      "ng deploy"
-    ]
+    "deny": ["rm -rf *", "git push *", "git checkout main", "npm publish", "ng deploy"]
   }
 }

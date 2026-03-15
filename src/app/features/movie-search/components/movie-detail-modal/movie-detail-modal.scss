@@ -1,0 +1,130 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0 0 0 / 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--spacing-md);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-md);
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  line-height: 1;
+
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+.modal-body {
+  display: flex;
+  gap: var(--spacing-lg);
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.modal-poster {
+  flex-shrink: 0;
+  width: 200px;
+
+  img {
+    width: 100%;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 600px) {
+    width: 150px;
+    margin: 0 auto;
+  }
+}
+
+.poster-placeholder {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-border);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+}
+
+.modal-info {
+  flex: 1;
+  min-width: 0;
+
+  h2 {
+    margin: 0 0 var(--spacing-sm);
+    font-size: 1.4rem;
+  }
+}
+
+.meta {
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-xs);
+  font-size: 0.9rem;
+}
+
+.genre {
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-sm);
+  font-size: 0.85rem;
+}
+
+.rating {
+  font-weight: 600;
+  margin: 0 0 var(--spacing-md);
+  color: var(--color-primary);
+}
+
+.plot {
+  margin: 0 0 var(--spacing-md);
+  line-height: 1.6;
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--spacing-xs) var(--spacing-md);
+  margin: 0;
+  font-size: 0.875rem;
+
+  dt {
+    font-weight: 600;
+    color: var(--color-text-secondary);
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.modal-loading {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-secondary);
+}

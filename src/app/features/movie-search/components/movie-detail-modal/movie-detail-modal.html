@@ -1,0 +1,44 @@
+<div class="modal-overlay" (click)="onOverlayClick($event)" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <button class="modal-close-btn" (click)="onClose()" aria-label="Close modal">&times;</button>
+
+    @if (movieDetail$() | async; as detail) {
+      <div class="modal-body">
+        <div class="modal-poster">
+          @if (detail.Poster !== 'N/A') {
+            <img [src]="detail.Poster" [alt]="detail.Title + ' poster'" />
+          } @else {
+            <div class="poster-placeholder">No Image</div>
+          }
+        </div>
+        <div class="modal-info">
+          <h2>{{ detail.Title }}</h2>
+          <p class="meta">
+            {{ detail.Year }} &middot; {{ detail.Rated }} &middot; {{ detail.Runtime }}
+          </p>
+          <p class="genre">{{ detail.Genre }}</p>
+          <p class="rating">IMDb Rating: {{ detail.imdbRating }} / 10</p>
+          <p class="plot">{{ detail.Plot }}</p>
+          <dl class="detail-list">
+            <dt>Director</dt>
+            <dd>{{ detail.Director }}</dd>
+            <dt>Writer</dt>
+            <dd>{{ detail.Writer }}</dd>
+            <dt>Actors</dt>
+            <dd>{{ detail.Actors }}</dd>
+            <dt>Language</dt>
+            <dd>{{ detail.Language }}</dd>
+            <dt>Country</dt>
+            <dd>{{ detail.Country }}</dd>
+            <dt>Awards</dt>
+            <dd>{{ detail.Awards }}</dd>
+          </dl>
+        </div>
+      </div>
+    } @else {
+      <div class="modal-loading">
+        <p>Loading movie details...</p>
+      </div>
+    }
+  </div>
+</div>
